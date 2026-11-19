@@ -1,4 +1,4 @@
-import java.util.Properties
+﻿import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -26,7 +26,7 @@ val ABI_NAMES = mapOf("arm64-v8a" to "ARMv8", "armeabi-v7a" to "ARMv7")
  * so their update check, which installs only its own package, opens the release page for these
  * instead of trying an APK it cannot install over itself.
  */
-val APK_NAME = "Revera"
+val APK_NAME = "Spoti"
 
 android {
     testOptions {
@@ -47,7 +47,7 @@ android {
     val beta = findProperty("appVersionName") == null || version.contains("-beta")
     defaultConfig {
         applicationId = if (automixLab) "app.revera.automixlab" else "app.revera.dev"
-        manifestPlaceholders["appLabel"] = if (automixLab) "Revera Mix Lab" else "Revera"
+        manifestPlaceholders["appLabel"] = if (automixLab) "Spoti Mix Lab" else "Spoti"
         // The adb command line (com.music.spotui.cli): betas and debug builds only.
         manifestPlaceholders["cliEnabled"] = beta.toString()
         minSdk = 29
@@ -102,7 +102,7 @@ android {
     buildTypes {
         debug {
             // Installs next to the release apps (own data, own sign-in).
-            manifestPlaceholders["appLabel"] = if (automixLab) "Revera Mix Lab" else "Revera dev"
+            manifestPlaceholders["appLabel"] = if (automixLab) "Spoti Mix Lab" else "Spoti dev"
             manifestPlaceholders["cliEnabled"] = "true"
             buildConfigField("String", "UPDATE_REPO", "\"caruno-git/Revera\"")
         }
@@ -113,7 +113,7 @@ android {
             // -PoverDev: the optimised build under the dev app's id, to measure the speed of a
             // beta on the test phone without replacing the signed beta installed there.
             if (findProperty("overDev") != null && !automixLab) {
-                manifestPlaceholders["appLabel"] = "Revera dev"
+                manifestPlaceholders["appLabel"] = "Spoti dev"
                 buildConfigField("String", "UPDATE_REPO", "\"caruno-git/Revera\"")
             }
             // The Mix Lab stays drivable from the CLI in its optimised build, as in its debug one.
@@ -272,3 +272,4 @@ tasks.register("collectApks") {
         dst.listFiles()?.sorted()?.forEach { println("${it.name}  ${it.length() / 1024 / 1024} MB") }
     }
 }
+
