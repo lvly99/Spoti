@@ -102,7 +102,7 @@ android {
     buildTypes {
         debug {
             // Installs next to the release apps (own data, own sign-in).
-            manifestPlaceholders["appLabel"] = if (automixLab) "Spoti Mix Lab" else "Spoti dev"
+            manifestPlaceholders["appLabel"] = if (automixLab) "Spoti Mix Lab" else "Spoti"
             manifestPlaceholders["cliEnabled"] = "true"
             buildConfigField("String", "UPDATE_REPO", "\"caruno-git/Revera\"")
         }
@@ -113,7 +113,7 @@ android {
             // -PoverDev: the optimised build under the dev app's id, to measure the speed of a
             // beta on the test phone without replacing the signed beta installed there.
             if (findProperty("overDev") != null && !automixLab) {
-                manifestPlaceholders["appLabel"] = "Spoti dev"
+                manifestPlaceholders["appLabel"] = "Spoti"
                 buildConfigField("String", "UPDATE_REPO", "\"caruno-git/Revera\"")
             }
             // The Mix Lab stays drivable from the CLI in its optimised build, as in its debug one.
